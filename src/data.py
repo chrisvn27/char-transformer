@@ -1,4 +1,6 @@
 import pathlib
+import torch
+
 
 path = pathlib.Path(__file__).resolve().parent.parent / "data" / "input.txt"
 
@@ -20,6 +22,13 @@ def decoder(list_integer):
 
     return decoded_string
 
+
+
+encoded_text = encoder(text)
+tensor_text = torch.tensor(encoded_text)
+
+
+
 if __name__ == "__main__":
 
     print(f"Length of text: {len(text):,} characters")
@@ -40,6 +49,8 @@ if __name__ == "__main__":
     decoded_word = decoder(list_integer)
 
     assert word == decoded_word, f"word should have been {word}"
+
+    print(f"Text into tensor checking shape/type: {tensor_text.shape}, {tensor_text.dtype}")
 
 
 
