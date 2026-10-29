@@ -23,11 +23,18 @@ def decoder(list_integer):
     return decoded_string
 
 
-
 encoded_text = encoder(text)
 tensor_text = torch.tensor(encoded_text)
 
+train_data_fraction = 0.9
 
+total_indices = len(tensor_text)
+
+train_indices = int(train_data_fraction*total_indices)
+
+train_data = tensor_text[:train_indices]
+
+val_data = tensor_text[train_indices:]
 
 if __name__ == "__main__":
 
@@ -51,6 +58,12 @@ if __name__ == "__main__":
     assert word == decoded_word, f"word should have been {word}"
 
     print(f"Text into tensor checking shape/type: {tensor_text.shape}, {tensor_text.dtype}")
+
+    print(f"Checking training data and validation data add up to the total")
+    print(f"Train data = {len(train_data)}, Validation data = {len(val_data)}")
+    print(f"Train and validation data add to {len(train_data) + len(val_data)}")
+    assert len(train_data) + len(val_data) == len(text)
+
 
 
 
