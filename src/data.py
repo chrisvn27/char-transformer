@@ -22,19 +22,31 @@ def decoder(list_integer):
 
     return decoded_string
 
+def get_batch(batch_size = 64, train = True):
+    if train:
+        N = len(train_data)
+    else:
+        N = len(val_data)
+
+    rand_idxs = torch.randint(N- window_size, (batch_size,))
+
+    return rand_idxs
+
+
 
 encoded_text = encoder(text)
 tensor_text = torch.tensor(encoded_text)
 
 train_data_fraction = 0.9
-
 total_indices = len(tensor_text)
-
 train_indices = int(train_data_fraction*total_indices)
-
 train_data = tensor_text[:train_indices]
-
 val_data = tensor_text[train_indices:]
+
+batch_size = 64
+window_size = 4
+
+
 
 if __name__ == "__main__":
 
@@ -64,6 +76,22 @@ if __name__ == "__main__":
     print(f"Train and validation data add to {len(train_data) + len(val_data)}")
     assert len(train_data) + len(val_data) == len(text)
 
+    print(f"Testing function get_batch to get indixs for train or val")
 
+    print(f"Train testing with batch size of 64")
+    idxs_train = get_batch()
+    assert len(idxs_train) == batch_size, f"length should be {batch_size}"
+    assert idxs_train.max() < len(train_data) - window_size, f"Max idxs should be less than N_train -window_size -1 which is {len(train_data) - window_size -1}"
+    
+    print(f"Validation testing testing with batch size of 64")
+    idxs_val = get_batch(batch_size, train=False)
+    assert len(idxs_val) == batch_size, f"length should be {batch_size}"
+    assert idxs_val.max() < len(val_data) - window_size, f"Max idxs should be less than N_val -window_size -1  which is {len(val_data) - window_size -1}"
+
+    assert idxs_val.max() < 100, f"Max idxs should be less than N_val -window_size -1  which is {len(val_data) - window_size -1}"
+    
+    
+    
+    
 
 
