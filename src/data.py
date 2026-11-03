@@ -113,7 +113,7 @@ if __name__ == "__main__":
     assert train_batch_x.size() == (batch_size_test, window_size), (
          f"train_batch_x size should be {batch_size_test, window_size}, and is {train_batch_x.size()[0], train_batch_x.size()[1]}")
     assert train_batch_y.size() == (batch_size_test, window_size), (
-             f"train_batch_x size should be {batch_size_test, window_size}, and is {train_batch_y.size()[0], train_batch_y.size()[1]}")
+             f"train_batch_y size should be {batch_size_test, window_size}, and is {train_batch_y.size()[0], train_batch_y.size()[1]}")
 
     print(f"Checking that train_batch_x[:,1:] == train_batch_y[:,:-1]")
     assert torch.equal(train_batch_x[:,1:], train_batch_y[:,:-1]), f"train_batch_x[:,1:] != train_batch_y[:,:-1] "
@@ -134,7 +134,7 @@ if __name__ == "__main__":
     assert val_batch_x.size() == (batch_size_test, window_size), (
          f"val_batch_x size should be {batch_size_test, window_size}, and is {val_batch_x.size()[0], val_batch_x.size()[1]}")
     assert val_batch_y.size() == (batch_size_test, window_size), (
-             f"val_batch_x size should be {batch_size_test, window_size}, and is {val_batch_y.size()[0], val_batch_y.size()[1]}")
+             f"val_batch_y size should be {batch_size_test, window_size}, and is {val_batch_y.size()[0], val_batch_y.size()[1]}")
     
     print(f"Checking that val_batch_x[:,1:] == val_batch_y[:,:-1]")
     assert torch.equal(val_batch_x[:,1:], val_batch_y[:,:-1]), f"val_batch_x[:,1:] != val_batch_y[:,:-1] "
