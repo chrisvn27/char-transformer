@@ -124,7 +124,7 @@ if __name__ == "__main__":
 
     print(f"Visual representation of decoded data for train_batch")
     print(f"train_batch_x[0] is {repr(decoder(train_batch_x[0].tolist()))}")
-    print(f"train_batch_x[0] is {repr(decoder(train_batch_y[0].tolist()))}")
+    print(f"train_batch_y[0] is {repr(decoder(train_batch_y[0].tolist()))}")
 
 
     print(f"Validation for get batch of size {batch_size_test}, and window size = {window_size}")
@@ -145,4 +145,4 @@ if __name__ == "__main__":
     
     print(f"Visual representation of decoded data for val_batch")
     print(f"val_batch_x[0] is {repr(decoder(val_batch_x[0].tolist()))}")
-    print(f"val_batch_x[0] is {repr(decoder(val_batch_y[0].tolist()))}")
+    print(f"val_batch_y[0] is {repr(decoder(val_batch_y[0].tolist()))}")
