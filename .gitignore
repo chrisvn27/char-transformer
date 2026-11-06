@@ -4,3 +4,4 @@ __pycache__/
 .vscode/
 *.pt
 data/input.txt
+src/test_scripts.py
